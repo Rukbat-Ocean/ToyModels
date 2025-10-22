@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<head>
+    <title>MAIN</title>
+    <style>
+        button {
+                    margin-top: 15px;
+                    padding: 10px 15px;
+                    border: none;
+                    background-color: #706a6a;
+                    color: white;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    max-width: 530px;
+                }
+    </style>
+</head>
+
+<body>
+    {% if session.logged_in %}
+        <h2>已登录，{{session.username}}</h2>
+    {% else %}
+        <h2>尚未登录</h2>
+    {% endif %}
+    <form method = 'POST' action = '{{ url_for('to_login') }}'>
+        <button type="submit">Log in</button>
+    </form>
+    {% if session.logged_in %}
+    <form method = 'POST' action = '{{ url_for('to_logout') }}'>
+        <button type="submit">Log out</button>
+    </form>
+    {% endif %}
+</body>
